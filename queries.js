@@ -1,12 +1,19 @@
 // Connecting to a Postgres database from node
 const Pool = require('pg').Pool
-const pool = new Pool({
-  user: 'me',
-  host: 'localhost',
-  database: 'api',
-  password: 'password',
+/* const pool = new Pool({
+  user: 'xwffgufflnytyy',
+  host: 'ec2-35-174-56-18.compute-1.amazonaws.com',
+  database: 'dam1vevohrvina',
+  password: '27a6fbff47dda56387249b917d43e230479c5711b1fe91469d35a87d9da08d82',
   port: 5432,
-})
+}) */
+const pool = new Pool({
+    user: 'me',
+    host: 'localhost',
+    database: 'api',
+    password: 'password',
+    port: 5432,
+  })
 // GET all users
 const getUsers = (request, response) => {
     pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
@@ -31,6 +38,12 @@ const getUserById = (request, response) => {
 const createUser = (request, response) => {
     const { name, email } = request.body
   
+    pool.query('curl --data "name=$1&email=$2"', [name, email], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(201).send(`User added with ID: ${results.insertId}`)
+    })
     pool.query('INSERT INTO users (name, email) VALUES ($1, $2)', [name, email], (error, results) => {
       if (error) {
         throw error
