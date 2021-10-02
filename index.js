@@ -24,7 +24,7 @@ const SlackBot = require('slackbots');
 const axios = require('axios');
 
 const bot = new SlackBot({
-  token: 'xoxb-2375497193185-2392166787239-uXjFJCS6L5DRwSHH0cDtWh8q',
+  token: 'xoxb-2375497193185-2392166787239-WXe3ZKG7bvtVMM9cdyMGbBee',
   name: 'Crudbot',
 });
 
@@ -35,7 +35,7 @@ bot.on('start', () => {
   };
 
   bot.postMessageToChannel(
-    'general',
+    'notification-heroku',
     'Be crude With @CRUD-bot! :)',
     params,
   );
@@ -76,7 +76,7 @@ function runHelp() {
   };
 
   bot.postMessageToChannel(
-    'general',
+    'notification-heroku',
     'Type @CRUD-bot C or R or U or D or help',
     params,
   );
@@ -90,12 +90,12 @@ function read_CRUD() {
     // app.get('/users', db.getUsers)
   console.log('Here 3');
   bot.postMessageToChannel(
-    'general',
+    'notification-heroku',
     'List of users: ',
     params,
   );
   bot.postMessageToChannel(
-    'general',
+    'notification-heroku',
     stringify(app.get('/users', db.getUsers)),
     params,
   );
@@ -110,7 +110,7 @@ function create_CRUD() {
     // app.get('/users', db.getUsers)
   console.log('Here 5');
   bot.postMessageToChannel(
-    'general',
+    'notification-heroku',
     'inserted into Postgres DB',
     params,
   );
